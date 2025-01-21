@@ -1,36 +1,55 @@
+# Technical Challenge with React, TypeScript, NextJS, and Bulma CSS
+
+This application was created to fulfill a technical challenge, to visualize data fetched from [this endpoint](https://c4rm9elh30.execute-api.us-east-1.amazonaws.com/default/cachedPriceData?ticker=C) in a user-friendly, easily consumable way.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+First clone this application. Then in the root directory, run the following to install dependencies and kick off the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running tests
+There are a selection of Jest tests included in this application, testing core util functionality and sanity checking a sample of React components.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run the tests, run the following command from the root of this project:
+```bash
+npm run test
+```
+The output will include coverage metrics. Further information on coverage can be found in the `coverage` directory. A full report is written to `coverage/lcov-report/index.html`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To run the tests in watch mode, run the following command from the root of this project:
+```bash
+npm run test -- --watch
+```
 
-## Learn More
+## Application features
+The following functionality is demonstrated in this application:
+- **Data is fetched** from the provided endpoint, formatted appropriately, and displayed in a **paginated table**.
+  - Data is fetched using a custom [useFetchData](./src/app/hooks/useFetchData.ts) hook.
+- The text `Loading...` is displayed while the application is fetching data from the endpoint.
+- If there is an error, an **error message** will be displayed instead of the table.
+- The table pages are 10 records long, and the user can **move forwards and backwards through the pages** using controls at the bottom of the table.
+- Users can **click on a header in the table to sort the data** by that header, in ascending order. Click the reset button to revert to default sorting.
+- Users can **search the data** in the table using the search bar at the top of the table. Click the reset button to remove the search term.
+- Users can **filter based on a set time range**: data from today, data from the last 3 days, and data from the last 5 days. Click the reset button to remove the filter.
+- Much of the crucial table data is stored in a [TableContext](./src/app//context/TableContext.tsx) to prevent prop drilling and to ensure all child components read from the same single source of truth.
+- A **bar chart of average volume per day** is included in a separate tab. Users can clearly see the trend in the average volume of the data records in this chart.
 
-To learn more about Next.js, take a look at the following resources:
+_Note: While developing this application I maintained a short checklist to manage tasks, which is [here](./checklist.md)._
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Enhancements
+Given additional time, there are multiple enhancements I would make to this application:
+1. The reset button is a workaround to reduce the complexity of returning to previous states of the table data, and simply reverting back to the start. This could be improved by:
+    - Updating the search functionality so that it filters on the original list every time there is a change detected, rather than just trimming down the current list.
+    - Adding the ability to remove filters in the filter section rather than using the reset button.
+2. The only filterable field currently is the timestamp, which was a decision made to quickly showcase filter functionality. Given additional time, I would like build out a fully customizable filter panel and allow the user to filter based on any field they choose.
+3. It is currently only possible to sort in ascending order. A nice enhancement would be to allow the user to click on the current sorting header again to reorder the data in descending order.
+4. Only a small subset of test are included as examples. Ordinarily I would test everything, and aim for as much coverage as possible. In the interest of time, I have tested only the core filter functionality, the main DataDisplay component, and a smaller SearchBar component.
+    - In particular, I would have liked to test the custom hook used to fetch the data due to its importance.
+    - End to end tests using a framework like Cypress would be another good enhancement.
+    - I would also set up some sort of CI/CD pipeline to run when opening a PR.
