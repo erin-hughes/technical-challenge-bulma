@@ -1,5 +1,4 @@
 import { applyDateFilter } from "../applyDateFilter";
-import { RowData } from "../../../../interfaces/RowData";
 import { mockData } from "./__data__/mockData";
 import { DateFilter } from "../../../FilterPanel/DateFilter";
 

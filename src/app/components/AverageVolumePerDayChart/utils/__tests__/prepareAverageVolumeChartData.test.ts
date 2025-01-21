@@ -1,5 +1,4 @@
 import { prepareAverageVolumeChartData } from "../prepareAverageVolumeChartData";
-import { RowData } from "../../../../interfaces/RowData";
 import { mockAverageVolumeData } from "./__data__/mockAverageVolumeData";
 
 describe("prepareAverageVolumeChartData", () => {
@@ -8,9 +7,7 @@ describe("prepareAverageVolumeChartData", () => {
 
   it("calculates average volume for days with data", () => {
     const result = prepareAverageVolumeChartData([mockAverageVolumeData[5]]);
-    expect(result).toEqual([
-      { date: "2023-01-05", averageVolume: 8000 },
-    ]);
+    expect(result).toEqual([{ date: "2023-01-05", averageVolume: 8000 }]);
   });
 
   it("includes missing dates with averageVolume: 0", () => {

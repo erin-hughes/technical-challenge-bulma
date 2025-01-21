@@ -1,16 +1,16 @@
-const nextJest = require('next/jest');
+const nextJest = require("next/jest");
 
 const createJestConfig = nextJest({
-  dir: './',
+  dir: "./",
 });
 
 const customJestConfig = {
   testEnvironment: "jsdom",
   moduleNameMapper: {
-    '\\.(css|scss)$': 'identity-obj-proxy',
+    "\\.(css|scss)$": "identity-obj-proxy",
   },
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+    "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
   },
   testMatch: ["**/__tests__/**/*.test.ts", "**/__tests__/**/*.test.tsx"],
 };

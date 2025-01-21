@@ -1,16 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTableContext } from "../../context/TableContext";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-  Label,
-} from "recharts";
-import { RowData } from "../../interfaces/RowData";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 import { prepareAverageVolumeChartData } from "./utils/prepareAverageVolumeChartData";
 import { AverageVolumeChartData } from "./interfaces/AverageVolumeChartData";
 
