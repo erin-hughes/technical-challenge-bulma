@@ -46,7 +46,14 @@ const DataDisplay = (): React.ReactElement => {
       const rowCount = data.priceData?.open?.length || 0;
       setTotalPages(Math.ceil(rowCount / pageSize));
     }
-  }, [data, pageSize, setTableData, setTotalPages]);
+  }, [
+    data,
+    pageSize,
+    setTableHeaders,
+    setTableData,
+    setOriginalTableData,
+    setTotalPages,
+  ]);
 
   // useEffect to sort the data when a table header is clicked
   useEffect(() => {
@@ -57,7 +64,7 @@ const DataDisplay = (): React.ReactElement => {
       );
       setTableData(sortedTableData);
     }
-  }, [sortingHeader, setTableData]);
+  }, [sortingHeader, tableData, setTableData]);
 
   // useEffect to apply search string when entered into the search bar
   useEffect(() => {
@@ -67,7 +74,14 @@ const DataDisplay = (): React.ReactElement => {
       setCurrentPage(1);
       setTotalPages(Math.ceil(searchedTableData.length / pageSize));
     }
-  }, [searchString, setTableData, setCurrentPage, setTotalPages]);
+  }, [
+    searchString,
+    tableData,
+    pageSize,
+    setTableData,
+    setCurrentPage,
+    setTotalPages,
+  ]);
 
   // useEffect to apply data range filter when the corresponding radio button is clicked
   useEffect(() => {
@@ -77,7 +91,14 @@ const DataDisplay = (): React.ReactElement => {
       setCurrentPage(1);
       setTotalPages(Math.ceil(filteredTableData.length / pageSize));
     }
-  }, [dateFilter, setTableData, setCurrentPage, setTotalPages]);
+  }, [
+    dateFilter,
+    tableData,
+    pageSize,
+    setTableData,
+    setCurrentPage,
+    setTotalPages,
+  ]);
 
   // Render logic
   if (loading) return <div>Loading...</div>;
@@ -99,7 +120,7 @@ const DataDisplay = (): React.ReactElement => {
   } else
     return (
       <div>
-        <ErrorMessage message={error}/>
+        <ErrorMessage message={error} />
       </div>
     );
 };

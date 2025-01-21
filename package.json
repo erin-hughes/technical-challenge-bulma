@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "test:lint": "next lint && npx prettier . --check && jest --coverage",
+    "prettier": "npx prettier . --check",
+    "prettier:write": "npx prettier . --write"
   },
   "dependencies": {
     "bulma": "^1.0.3",

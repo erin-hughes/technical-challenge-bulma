@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { useTableContext } from "../../../context/TableContext";
 import SearchBar from "../SearchBar";
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 
 // Mock for TableContext
 jest.mock("../../../context/TableContext");
@@ -45,5 +45,4 @@ describe("SearchBar", () => {
     expect(mockSetSearchString).toHaveBeenCalledWith("new value");
     expect(mockSetSearchString).toHaveBeenCalledTimes(1);
   });
-
 });

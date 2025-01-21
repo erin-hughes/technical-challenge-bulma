@@ -13,7 +13,7 @@ export const prepareAverageVolumeChartData = (
   // first determine the date range
   // start with the first data record as the table data is sorted by date by default
   const firstDate = new Date(tableData[0].timestamp.split(" ")[0]);
-  let currentDate = new Date(firstDate);
+  const currentDate = new Date(firstDate);
   const today = new Date();
 
   const allDates: string[] = [];
