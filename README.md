@@ -32,6 +32,7 @@ npm run test -- --watch
 ```
 
 Linting and Prettier can also be run alongside the tests:
+
 ```bash
 npm run test:lint
 ```
